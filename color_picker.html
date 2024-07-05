@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Random Color Picker</title>
+
+	<style type="text/css">
+		body,div{
+			display:  flex;
+			align-items: center;
+			flex-direction: column;
+		}
+		body{
+			padding: 100px 0;
+			background: black;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+
+	<div>
+		<h1>Random Color Picker</h1>
+		<button id="color_picker">Click Here</button>
+		<br>Or<br>
+		<p></p>
+		<h1>Type your own color</h1>
+		<input type="text" name="" id="color_picker_inp" placeholder="Enter your color" />
+	</div>
+
+	<script type="text/javascript">
+		let lastnumber = null;
+		let colors = ["red", "green","blue","pink","grey","orange","whitesmoke","yellow","skyblue","purple"];
+
+		let color_picker = document.getElementById('color_picker');
+
+		color_picker.addEventListener("click", ()=>{
+			random = getrandom_number();
+			if(random == lastnumber){
+				random = getrandom_number();
+			}else{
+				lastnumber = random;
+			}
+			document.querySelector("h1").style.background = colors[random];
+		})
+		function getrandom_number(){
+			let x = Math.floor(Math.random()*10);
+			return x ; 
+		}
+
+		let color_picker_inp = document.getElementById('color_picker_inp');
+		color_picker_inp.addEventListener("keyup",(e)=>{
+			let input_color = e.target.value;
+			document.querySelector("h1").style.backgroundColor = input_color;
+			document.querySelector("p").innerHTML = input_color;
+		});
+
+	</script>
+
+</body>
+</html>
